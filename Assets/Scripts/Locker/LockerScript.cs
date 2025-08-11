@@ -1,8 +1,5 @@
-using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
-using static UnityEditor.U2D.ScriptablePacker;
 
 public class LockerScript : MonoBehaviour
 {
