@@ -9,10 +9,13 @@ public class DeskScript : MonoBehaviour
     private InputAction interactAction;
 
     [SerializeField] private AudioClip takeKey;
+    [SerializeField] private AudioClip takeCrowbar;
 
-    public bool hasKey;
+    public bool hasCrowbar = false;
+    public bool hasKey = false;
     private bool playerInRange = false;
     private Transform keyTransform;
+    private Transform crowbarTransform;
 
     void Start()
     {
@@ -33,6 +36,7 @@ public class DeskScript : MonoBehaviour
     {
         interactAction = InputSystem.actions.FindAction("Interact");
         keyTransform = transform.Find("Key");
+        crowbarTransform = transform.Find("Crowbar");
     }
 
     void Update()
@@ -47,6 +51,13 @@ public class DeskScript : MonoBehaviour
                     hasKey = false;
                     keyTransform.gameObject.SetActive(false);
                     logic.gainKey();
+                }
+                if (hasCrowbar == true)
+                {
+                    SoundFXManager.instance.PlaySoundFXClip(takeCrowbar, transform, 1f);
+                    hasCrowbar = false;
+                    crowbarTransform.gameObject.SetActive(false);
+                    logic.gainCrowbar();
                 }
             }
         }
